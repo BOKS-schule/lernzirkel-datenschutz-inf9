@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<title>Datenschutz – Lernzirkel Klasse 9</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eae7e0;--card:#fff;--card-alt:#f5f3ee;--primary:#1746a2;--primary-light:#e8edf8;--orange:#c44900;--purple:#6b21a8;--green:#0f7b3f;--text:#111;--text2:#3a3a3a;--muted:#777;--border:#d5d0c8;--shadow:0 3px 12px rgba(0,0,0,.07);--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+.hdr{background:var(--primary);position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.25) 0%,transparent 50%,rgba(255,255,255,.08) 100%)}
+.hdr-inner{position:relative;z-index:2;max-width:800px;margin:0 auto;padding:2.5rem 1.5rem 2rem;text-align:center;color:#fff}
+.hdr-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:.25rem 1rem;border-radius:6px;margin-bottom:1rem;color:rgba(255,255,255,.8)}
+.hdr h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;letter-spacing:-.03em;margin-bottom:.4rem}
+.hdr p{font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.5;max-width:460px;margin:0 auto 1.2rem}
+.hdr-bar{display:flex;align-items:center;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.prog-track{width:200px;height:6px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;width:0%;background:#fbbf24;border-radius:99px;transition:width .5s}
+.prog-txt{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.6)}
+.save-flash{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:#86efac;opacity:0;transition:opacity .3s}
+.save-flash.on{opacity:1}
+.hdr-accent{height:5px;background:linear-gradient(90deg,var(--orange),var(--purple),var(--primary))}
+
+.nav{position:sticky;top:0;z-index:100;background:var(--card);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.nav::-webkit-scrollbar{display:none}
+.nav button{flex-shrink:0;padding:.9rem 1.2rem;background:none;border:none;border-bottom:3px solid transparent;color:var(--muted);font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+.nav button:hover{color:var(--text);background:rgba(23,70,162,.03)}
+.nav button.act{color:var(--primary);border-bottom-color:var(--primary)}
+.nav .nm{font-family:'JetBrains Mono',monospace;font-size:.6rem;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;border-radius:5px;background:var(--card-alt);border:1px solid var(--border);color:var(--muted)}
+.nav button.done .nm{background:var(--green);border-color:var(--green);color:#fff}
+
+main{max-width:820px;margin:0 auto;padding:1.5rem 1rem 5rem}
+.st{display:none;animation:fadeUp .3s ease}
+.st.vis{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.c{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.2rem;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.c::after{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.c.bl::after{background:var(--primary)}.c.or::after{background:var(--orange)}.c.pu::after{background:var(--purple)}.c.gr::after{background:var(--green)}
+.c-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:.6rem}
+.c.bl .c-tag{color:var(--primary)}.c.or .c-tag{color:var(--orange)}.c.pu .c-tag{color:var(--purple)}.c.gr .c-tag{color:var(--green)}
+.c h2{font-size:1.25rem;font-weight:800;margin-bottom:.7rem;letter-spacing:-.02em}
+.c h3{font-size:1rem;font-weight:700;margin-bottom:.6rem}
+.c p,.c li{color:var(--text2);line-height:1.65;font-size:.9rem}
+.c ul{padding-left:1.2rem;margin-top:.3rem}.c li{margin-bottom:.3rem}
+
+.st-hd{display:flex;align-items:center;gap:.9rem;margin-bottom:1.3rem}
+.st-ic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.st-ic.bl{background:var(--primary-light);color:var(--primary)}.st-ic.or{background:#fdf0e6;color:var(--orange)}.st-ic.pu{background:#f3eaff;color:var(--purple)}.st-ic.gr{background:#e8f7ee;color:var(--green)}
+.st-hd h2{font-size:1.3rem;font-weight:800;letter-spacing:-.02em}.st-hd small{font-size:.78rem;color:var(--muted);display:block}
+
+/* VIDEO */
+.vid-link{display:flex;align-items:center;gap:1rem;background:#111;border-radius:12px;padding:1.1rem 1.3rem;margin:.8rem 0;text-decoration:none;transition:all .2s;border:2px solid transparent}
+.vid-link:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.vid-play{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;flex-shrink:0;transition:all .2s}
+.vid-link:hover .vid-play{background:var(--primary);border-color:var(--primary)}
+.vid-meta .vid-t{color:#fff;font-weight:600;font-size:.9rem;margin-bottom:.15rem;display:block}
+.vid-meta .vid-s{color:rgba(255,255,255,.45);font-family:'JetBrains Mono',monospace;font-size:.65rem;display:block}
+
+.hl{background:rgba(23,70,162,.05);border-left:4px solid var(--primary);padding:.85rem 1rem;border-radius:0 10px 10px 0;margin:.8rem 0;font-size:.86rem;color:var(--text2)}
+.hl.or{background:rgba(196,73,0,.05);border-left-color:var(--orange)}
+.hl.gr{background:rgba(15,123,63,.05);border-left-color:var(--green)}
+.hl.pu{background:rgba(107,33,168,.05);border-left-color:var(--purple)}
+
+/* QUIZ Standard */
+.qq{font-size:.92rem;font-weight:600;margin-bottom:.7rem}
+.qo{display:flex;flex-direction:column;gap:.45rem;margin-bottom:.7rem}
+.qo button{background:var(--card-alt);border:1px solid var(--border);border-radius:10px;padding:.75rem .9rem;cursor:pointer;transition:all .15s;font-size:.86rem;text-align:left;color:var(--text);font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:.6rem}
+.qo button:hover:not(:disabled){border-color:var(--primary);background:var(--primary-light)}
+.qo button.ok{border-color:var(--green);background:rgba(15,123,63,.08)}.qo button.no{border-color:var(--orange);background:rgba(196,73,0,.06)}
+.qo .lt{width:22px;height:22px;border-radius:5px;background:var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.62rem;flex-shrink:0;color:var(--muted);font-weight:600}
+.qfb{padding:.7rem .9rem;border-radius:10px;font-size:.82rem;display:none;margin-top:.35rem}
+.qfb.vis{display:block}
+.qfb.g{background:rgba(15,123,63,.08);border:1px solid rgba(15,123,63,.2);color:#0f7b3f}
+.qfb.r{background:rgba(196,73,0,.06);border:1px solid rgba(196,73,0,.15);color:#c44900}
+
+.scn{background:var(--card-alt);border:1px solid var(--border);border-radius:12px;padding:1.1rem;margin:.8rem 0;font-size:.86rem;color:var(--text2);font-style:italic;line-height:1.55;position:relative;padding-left:2rem}
+.scn::before{content:'„';font-size:2.5rem;color:var(--primary);opacity:.2;position:absolute;top:.15rem;left:.6rem;font-family:serif;line-height:1}
+.thk{background:rgba(107,33,168,.05);border:1px solid rgba(107,33,168,.15);border-radius:12px;padding:.9rem 1rem;margin:.8rem 0}
+.thk .thk-t{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--purple);letter-spacing:2px;text-transform:uppercase;margin-bottom:.35rem}
+.thk p{color:#581c87;font-size:.86rem}
+
+.tl{position:relative;padding-left:1.3rem}
+.tl::before{content:'';position:absolute;left:.3rem;top:.4rem;bottom:.4rem;width:2px;background:linear-gradient(to bottom,var(--primary),var(--purple))}
+.tl-i{position:relative;margin-bottom:1rem;padding-left:.8rem}
+.tl-i::before{content:'';position:absolute;left:-1rem;top:.32rem;width:8px;height:8px;border-radius:50%;background:var(--primary);border:2px solid var(--bg)}
+.tl-y{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--primary);font-weight:600;margin-bottom:.1rem}
+.tl-t{font-size:.84rem;color:var(--text2)}
+
+.pcg{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.7rem}
+.pcc{border-radius:12px;padding:.85rem}
+.pcc.pro{background:rgba(15,123,63,.05);border:1px solid rgba(15,123,63,.15)}
+.pcc.con{background:rgba(196,73,0,.04);border:1px solid rgba(196,73,0,.12)}
+.pcc h4{font-size:.8rem;font-weight:700;margin-bottom:.5rem}
+.pcc.pro h4{color:var(--green)}.pcc.con h4{color:var(--orange)}
+.pci{font-size:.78rem;color:var(--text2);padding:.25rem 0;border-bottom:1px solid rgba(0,0,0,.03);display:flex;gap:.35rem}
+.pci:last-child{border:none}
+
+.mo{display:flex;align-items:center;gap:.6rem;cursor:pointer;background:var(--card-alt);border:1px solid var(--border);border-radius:10px;padding:.7rem .85rem;transition:all .15s;font-size:.86rem}
+.mo:hover{border-color:var(--primary);background:var(--primary-light)}
+.mo input{accent-color:var(--primary)}
+
+.cl{list-style:none;padding:0}
+.cl li{display:flex;align-items:flex-start;gap:.6rem;padding:.4rem 0;border-bottom:1px solid rgba(0,0,0,.03);font-size:.86rem;color:var(--text2)}
+.cl li:last-child{border:none}
+.cl li::before{content:'→';color:var(--primary);flex-shrink:0;font-weight:700}
+
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.7rem}
+.ic2{background:var(--card-alt);border-radius:12px;padding:.85rem;border:1px solid var(--border)}
+.ic2 .e{font-size:1.2rem;margin-bottom:.3rem}.ic2 .t{font-size:.8rem;font-weight:700;margin-bottom:.2rem}.ic2 .d{font-size:.75rem;color:var(--muted)}
+.ag{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem;margin-top:.6rem}
+.ac{background:var(--card-alt);border-radius:12px;padding:.75rem;text-align:center;border:1px solid var(--border)}
+.ac .e{font-size:1.2rem;margin-bottom:.2rem}.ac .t{font-size:.78rem;font-weight:600;margin-bottom:.15rem}.ac .d{font-size:.7rem;color:var(--muted)}
+
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.2rem;border-radius:10px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.86rem;cursor:pointer;transition:all .15s;border:none}
+.btn-p{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(23,70,162,.2)}
+.btn-p:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-o{background:transparent;border:1px solid var(--border);color:var(--text2);pointer-events:auto}
+.btn-o:hover{border-color:var(--primary);color:var(--primary)}
+.btn-d{background:transparent;border:1px solid rgba(196,73,0,.2);color:var(--orange);font-size:.75rem;padding:.4rem .8rem;border-radius:8px;cursor:pointer;font-family:'Outfit',sans-serif;font-weight:500;transition:all .15s}
+.btn-d:hover{background:rgba(196,73,0,.04)}
+.bnav{margin-top:1.2rem;display:flex;gap:.7rem;flex-wrap:wrap}
+
+.sb{background:var(--primary-light);border:1px solid rgba(23,70,162,.1);border-radius:12px;padding:.65rem 1rem;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:space-between;gap:.7rem;flex-wrap:wrap}
+.sb-t{font-size:.78rem;color:var(--text2);display:flex;align-items:center;gap:.35rem}
+.sb-t strong{color:var(--primary)}
+
+.fs{text-align:center;padding:1.5rem}
+.fs-c{width:100px;height:100px;border-radius:50%;border:3px solid var(--primary);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto .7rem;background:var(--primary-light);font-family:'JetBrains Mono',monospace}
+.fs-c .p{font-size:1.8rem;color:var(--primary);font-weight:700}.fs-c .l{font-size:.6rem;color:var(--muted)}
+
+.chk{display:flex;align-items:flex-start;gap:.55rem;padding:.45rem 0;border-bottom:1px solid rgba(0,0,0,.03)}
+.chk:last-child{border:none}
+.chk input{accent-color:var(--primary);margin-top:3px;flex-shrink:0}
+.chk span{font-size:.84rem;color:var(--text2)}
+
+/* ── DRAG & DROP ── */
+.drag-area{min-height:52px;background:var(--card-alt);border:2px dashed var(--border);border-radius:10px;padding:.5rem;display:flex;flex-wrap:wrap;gap:.4rem;transition:border-color .2s,background .2s}
+.drag-area.over{border-color:var(--primary);background:var(--primary-light)}
+.drag-area.correct-zone{border-color:var(--green);background:rgba(15,123,63,.05)}
+.drag-area.wrong-zone{border-color:var(--orange);background:rgba(196,73,0,.04)}
+.drag-col{flex:1;min-width:140px}
+.drag-col h4{font-size:.75rem;font-weight:700;margin-bottom:.4rem;font-family:'JetBrains Mono',monospace;letter-spacing:1px;text-transform:uppercase}
+.drag-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.45rem .75rem;font-size:.82rem;cursor:grab;user-select:none;display:inline-block;transition:box-shadow .15s,opacity .2s}
+.drag-item:active{cursor:grabbing;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.drag-item.dragging{opacity:.4}
+.drag-bank{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.7rem;min-height:44px;background:var(--card-alt);border:1px solid var(--border);border-radius:10px;padding:.5rem}
+.drag-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.7rem}
+@media(max-width:500px){.drag-grid{grid-template-columns:1fr}}
+
+/* ── SORTING GAME ── */
+.sort-items{display:flex;flex-direction:column;gap:.4rem;margin:.6rem 0}
+.sort-item{background:var(--card-alt);border:1px solid var(--border);border-radius:10px;padding:.65rem .9rem;font-size:.86rem;display:flex;align-items:center;gap:.6rem;cursor:grab;user-select:none;transition:box-shadow .15s}
+.sort-item:active{cursor:grabbing;box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.sort-item.dragging{opacity:.35}
+.sort-handle{color:var(--muted);font-size:1rem;flex-shrink:0}
+
+/* ── LESE-TEXT ── */
+.read-box{background:var(--card-alt);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.3rem;margin:.8rem 0;font-size:.88rem;line-height:1.7;color:var(--text2)}
+.read-box h4{font-size:.92rem;font-weight:700;margin-bottom:.5rem;color:var(--text)}
+.read-box p{margin-bottom:.6rem}
+.read-box p:last-child{margin-bottom:0}
+
+/* ── MEMORY ── */
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:.6rem 0;max-width:480px;margin-left:auto;margin-right:auto}
+.mem-card{aspect-ratio:1;border-radius:10px;border:2px solid var(--border);background:var(--primary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:600;text-align:center;padding:.3rem;color:transparent;transition:all .3s;position:relative;overflow:hidden}
+.mem-card .mem-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.mem-card .mem-front{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:.3rem;font-size:.72rem;font-weight:600;line-height:1.25;text-align:center;background:var(--card);color:var(--text);opacity:0;transition:opacity .25s}
+.mem-card.flipped .mem-front{opacity:1}
+.mem-card.flipped .mem-back{opacity:0}
+.mem-card.matched{border-color:var(--green);background:rgba(15,123,63,.08);cursor:default}
+.mem-card.matched .mem-front{color:var(--green)}
+.mem-card.wrong-flip{border-color:var(--orange)}
+.mem-stat{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted);margin-bottom:.4rem}
+
+/* ── FILL-IN ── */
+.fill-sentence{font-size:.9rem;color:var(--text2);line-height:2;margin:.3rem 0}
+.fill-blank{display:inline-block;border-bottom:2px solid var(--primary);min-width:90px;padding:0 .25rem;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--primary);text-align:center;cursor:pointer;position:relative;background:var(--primary-light);border-radius:4px 4px 0 0}
+.fill-blank.ok{border-bottom-color:var(--green);background:rgba(15,123,63,.07);color:var(--green)}
+.fill-blank.no{border-bottom-color:var(--orange);background:rgba(196,73,0,.05);color:var(--orange)}
+.fill-options{display:flex;flex-wrap:wrap;gap:.4rem;margin:.7rem 0}
+.fill-chip{background:var(--card-alt);border:1px solid var(--border);border-radius:20px;padding:.3rem .85rem;font-size:.8rem;cursor:pointer;transition:all .15s;font-family:'JetBrains Mono',monospace}
+.fill-chip:hover{border-color:var(--primary);color:var(--primary)}
+.fill-chip.used{opacity:.35;cursor:default;pointer-events:none}
+
+.btn-p:disabled{background:#b0bcd4;cursor:not-allowed;transform:none;box-shadow:none;opacity:.7}
+.btn-o:disabled{opacity:.45;cursor:not-allowed}
+.nav button:disabled{opacity:.4;cursor:not-allowed}
+.station-progress{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);margin-top:.5rem;display:flex;align-items:center;gap:.4rem}
+.station-progress .sp-bar{flex:1;height:4px;background:var(--border);border-radius:99px;overflow:hidden}
+.station-progress .sp-fill{height:100%;width:0%;background:var(--green);border-radius:99px;transition:width .4s}
+@media(max-width:600px){.nav button{padding:.8rem .9rem;font-size:.73rem}.c{padding:1.2rem}.ig,.pcg,.drag-grid{grid-template-columns:1fr}.memory-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+<div class="hdr-inner">
+<div class="hdr-tag">Informatik · Jahrgangsstufe 9 · Lernbereich 4</div>
+<h1>Datenschutz im digitalen Zeitalter</h1>
+<p>Erarbeite das Thema selbstständig in deinem eigenen Tempo – mit Videos, Texten und interaktiven Aufgaben.</p>
+<div class="hdr-bar">
+<div class="prog-track"><div class="prog-fill" id="pf"></div></div>
+<span class="prog-txt" id="pt">0 / 5</span>
+<span class="save-flash" id="sf">✓ gespeichert</span>
+</div>
+</div>
+</div>
+<div class="hdr-accent"></div>
+
+<nav class="nav" id="nav">
+<button class="act" onclick="go(0)"><span class="nm" id="n0">1</span> Einstieg</button>
+<button onclick="go(1)"><span class="nm" id="n1">2</span> Datenschutzgesetze</button>
+<button onclick="go(2)"><span class="nm" id="n2">3</span> Persönliche Daten</button>
+<button onclick="go(3)"><span class="nm" id="n3">4</span> Data-Mining</button>
+<button onclick="go(4)" id="nav-quiz-btn" disabled title="Schließe zuerst alle 4 Stationen ab"><span class="nm" id="n4">5</span> Abschluss-Quiz</button>
+</nav>
+
+<!-- Lehrkraft-Zugang -->
+<button id="lk-btn" onclick="lkLogin()" title="Lehrkraft-Zugang" style="position:fixed;bottom:1.2rem;right:1.2rem;z-index:200;background:var(--card);border:1px solid var(--border);border-radius:50%;width:2.6rem;height:2.6rem;cursor:pointer;font-size:1.1rem;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;transition:all .2s">🔒</button>
+
+<!-- Reset-Modal -->
+<div id="rst-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;align-items:center;justify-content:center">
+  <div style="background:var(--card);border-radius:var(--radius);padding:2rem;width:min(360px,90vw);box-shadow:0 8px 32px rgba(0,0,0,.18)">
+    <h3 style="margin-bottom:.4rem;font-size:1.1rem">♻️ Lernstand zurücksetzen?</h3>
+    <p style="font-size:.84rem;color:var(--muted);margin-bottom:1.2rem">Der gesamte Fortschritt wird gelöscht. Diese Aktion kann nicht rükgängig gemacht werden.</p>
+    <div style="display:flex;gap:.6rem;justify-content:flex-end">
+      <button class="btn btn-o" onclick="document.getElementById('rst-modal').style.display='none'">Abbrechen</button>
+      <button class="btn btn-p" style="background:var(--orange)" onclick="rstConfirmed()">Ja, zurücksetzen</button>
+    </div>
+  </div>
+</div>
+
+<!-- Lehrkraft-Modal -->
+<div id="lk-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;align-items:center;justify-content:center">
+  <div style="background:var(--card);border-radius:var(--radius);padding:2rem;width:min(360px,90vw);box-shadow:0 8px 32px rgba(0,0,0,.18)">
+    <h3 style="margin-bottom:.4rem;font-size:1.1rem">🔒 Lehrkraft-Zugang</h3>
+    <p style="font-size:.84rem;color:var(--muted);margin-bottom:1rem">Bitte Passwort eingeben, um das Abschluss-Quiz direkt aufzurufen.</p>
+    <input id="lk-pw-input" type="password" placeholder="Passwort" style="width:100%;padding:.6rem .8rem;border:1px solid var(--border);border-radius:8px;font-size:.95rem;margin-bottom:.5rem;outline:none;font-family:inherit" onkeydown="if(event.key==='Enter')lkSubmit()">
+    <p id="lk-error" style="color:var(--orange);font-size:.8rem;min-height:1.1em;margin-bottom:.6rem"></p>
+    <div style="display:flex;gap:.6rem;justify-content:flex-end">
+      <button class="btn btn-o" onclick="lkClose()">Abbrechen</button>
+      <button class="btn btn-p" onclick="lkSubmit()">Bestätigen</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="sb"><div class="sb-t">💾 <span id="sbt">Dein <strong>Lernstand wird automatisch gespeichert</strong>.</span></div><button class="btn-d" onclick="rst()">Zurücksetzen</button></div>
+
+<!-- ===================== STATION 0: EINSTIEG ===================== -->
+<div class="st vis" id="s0">
+<div class="st-hd"><div class="st-ic bl">🔍</div><div><h2>Was sind deine Daten wert?</h2><small>Station 1 · ca. 40 Min.</small></div></div>
+
+<div class="c bl"><div class="c-tag">📺 Einstiegsvideo</div><h3>Was weiß das Internet über dich?</h3>
+<p>Schau dir dieses Video an – es zeigt, welche Datenspuren du täglich hinterlässt.</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ddWkD8qLpOw" title="Was weiß das Internet über dich?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p style="margin-top:.5rem;font-size:.78rem;color:var(--muted)">⚠ Falls das Video nicht verfügbar ist: Suche auf YouTube nach "digitaler Fußabdruck einfach erklärt".</p></div>
+
+<div class="c bl"><div class="c-tag">💡 Wusstest du?</div><h3>Daten – das neue Öl?</h3>
+<p>Dieser Vergleich stammt von 2006 und meint: Daten sind eine der wertvollsten Ressourcen der Welt. Große Konzerne verdienen Milliarden damit, Daten über uns zu sammeln und auszuwerten.</p>
+<div class="hl" style="margin-top:.6rem"><strong>Facebook/Meta</strong> verdient ca. <strong>~50 US-Dollar pro Jahr</strong> an einem durchschnittlichen europäischen Nutzer – allein durch gezielt ausgespielte Werbung auf Basis deiner Daten.</div>
+<p style="margin-top:.5rem">Google, Amazon, TikTok – sie alle arbeiten ähnlich. Ihr "kostenloses" Angebot ist nicht wirklich kostenlos: Du bezahlst mit deinen Daten.</p></div>
+
+<div class="c bl"><div class="c-tag">🎭 Szenario</div>
+<div class="scn">Laura, 15, nutzt Instagram täglich. Sie postet Fotos, liked Beiträge und chattet mit Freunden. Eines Tages bemerkt sie: Die Werbeanzeigen zeigen genau die Turnschuhe, über die sie gerade mit ihrer Freundin gesprochen hat – auf WhatsApp. Zufall?</div>
+<div class="thk"><div class="thk-t">💭 Denk nach</div><p>Welche Daten könnte Instagram über Laura gesammelt haben? Schreib stichpunktartig auf, was dir einfällt.</p></div></div>
+
+<!-- AUFGABE 1a: Mehrfachauswahl (wie original) -->
+<div class="c gr"><div class="c-tag">🧠 Aufgabe 1a · Mehrfachauswahl</div><h3>Was zählt als personenbezogenes Datum?</h3>
+<p style="margin-bottom:.7rem;font-size:.84rem">Ein personenbezogenes Datum ist jede Information, die sich auf eine identifizierbare Person bezieht. Wähle alle richtigen Beispiele.</p>
+<div id="q0m" style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:.7rem">
+<label class="mo" data-c="1"><input type="checkbox"> Deine IP-Adresse</label>
+<label class="mo" data-c="1"><input type="checkbox"> Dein Standort (GPS-Daten)</label>
+<label class="mo" data-c="0"><input type="checkbox"> Die Außentemperatur in München</label>
+<label class="mo" data-c="1"><input type="checkbox"> Deine Kaufhistorie bei Amazon</label>
+<label class="mo" data-c="0"><input type="checkbox"> Der Name einer fiktiven Romanfigur</label>
+<label class="mo" data-c="1"><input type="checkbox"> Dein Gesicht auf einem Foto</label>
+</div>
+<button class="btn btn-p" onclick="chkM('q0m','q0f')">Prüfen</button>
+<div id="q0f" class="qfb"></div></div>
+
+<!-- AUFGABE 1b: Drag & Drop – Daten sortieren -->
+<div class="c gr"><div class="c-tag">🎮 Aufgabe 1b · Sortieren per Drag &amp; Drop</div><h3>Personenbezogen oder nicht?</h3>
+<p style="margin-bottom:.7rem;font-size:.84rem">Ziehe jede Angabe in die richtige Spalte.</p>
+<div class="drag-bank" id="drag-bank0">
+  <span class="drag-item" draggable="true" data-val="pb">Vorname + Nachname</span>
+  <span class="drag-item" draggable="true" data-val="pb">Handynummer</span>
+  <span class="drag-item" draggable="true" data-val="npb">Anzahl der Einwohner Deutschlands</span>
+  <span class="drag-item" draggable="true" data-val="pb">Kfz-Kennzeichen</span>
+  <span class="drag-item" draggable="true" data-val="npb">Heutiges Datum</span>
+  <span class="drag-item" draggable="true" data-val="pb">E-Mail-Adresse</span>
+</div>
+<div class="drag-grid">
+  <div class="drag-col"><h4 style="color:var(--green)">✅ Personenbezogen</h4><div class="drag-area" id="zone-pb" data-expect="pb"></div></div>
+  <div class="drag-col"><h4 style="color:var(--orange)">❌ Nicht personenbezogen</h4><div class="drag-area" id="zone-npb" data-expect="npb"></div></div>
+</div>
+<button class="btn btn-p" onclick="chkDrag('zone-pb','zone-npb','drag-fb0')">Prüfen</button>
+<div id="drag-fb0" class="qfb"></div></div>
+
+<!-- AUFGABE 1c: AGB-Analyse -->
+<div class="c bl"><div class="c-tag">📖 Lesetext · Kleingedrucktes</div><h3>Was steht wirklich in den AGB?</h3>
+<div class="read-box">
+  <h4>Auszug aus den Nutzungsbedingungen (vereinfacht und typisch für viele Apps)</h4>
+  <p>„Durch die Nutzung dieser App erteilst du uns das Recht, deine Inhalte, Standortdaten, Geräteinformationen, Nutzungsverhalten und Kontaktlisten für Zwecke der Personalisierung, Werbung und Produktverbesserung zu verwenden. Wir können diese Daten mit Drittanbietern teilen, die uns bei der Erbringung unserer Dienstleistungen unterstützen."</p>
+  <p>„Wir behalten uns vor, diese Bedingungen jederzeit zu ändern. Die weitere Nutzung der App nach einer Änderung gilt als Zustimmung zu den neuen Bedingungen."</p>
+  <p>„Du kannst dein Konto jederzeit löschen. Deine Daten werden innerhalb von 90 Tagen aus unseren aktiven Systemen entfernt. In Backups können Daten jedoch bis zu 3 Jahre gespeichert bleiben."</p>
+</div>
+<div id="q0agb1" style="margin-top:.9rem"><p class="qq">Frage 1: Welche Art von Daten werden laut diesem Auszug gesammelt?</p>
+<div class="qo">
+<button onclick="ans(this,'q0agb1','no')"><span class="lt">A</span> Nur Name und E-Mail-Adresse</button>
+<button onclick="ans(this,'q0agb1','ok')"><span class="lt">B</span> Standort, Gerätedaten, Nutzungsverhalten und Kontaktlisten</button>
+<button onclick="ans(this,'q0agb1','no')"><span class="lt">C</span> Ausschließlich selbst hochgeladene Inhalte</button>
+</div><div id="q0agb1-f" class="qfb"></div></div>
+<div id="q0agb2" style="margin-top:.9rem"><p class="qq">Frage 2: Was bedeutet „Die weitere Nutzung gilt als Zustimmung"?</p>
+<div class="qo">
+<button onclick="ans(this,'q0agb2','no')"><span class="lt">A</span> Du wirst bei jeder Änderung per E-Mail gefragt</button>
+<button onclick="ans(this,'q0agb2','ok')"><span class="lt">B</span> Wer die App weiternutzt, stimmt automatisch neuen Bedingungen zu – ohne aktive Einwilligung</button>
+<button onclick="ans(this,'q0agb2','no')"><span class="lt">C</span> Die Bedingungen können nur einmal geändert werden</button>
+</div><div id="q0agb2-f" class="qfb"></div></div>
+<div class="thk" style="margin-top:.8rem"><div class="thk-t">💭 Weiterdenken</div><p>Die DSGVO verlangt eine „informierte und freiwillige Einwilligung". Ist die Einwilligung durch das Akzeptieren solcher AGB wirklich informiert und freiwillig? Diskutiere mit deiner Banknachbarin / deinem Banknachbarn.</p></div></div>
+
+<!-- AUFGABE 1d: Sortieraufgabe Datenmenge -->
+<div class="c gr"><div class="c-tag">🎮 Aufgabe 1c · Sortieren</div><h3>Wie sensibel sind diese Daten?</h3>
+<p style="font-size:.84rem;margin-bottom:.7rem">Ordne die Datentypen von <strong>weniger sensibel</strong> (oben) bis <strong>sehr sensibel</strong> (unten) – ziehe die Karten in die richtige Reihenfolge.</p>
+<div class="sort-items" id="sort-sensitivity">
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>Gesundheitsdaten (Diagnosen, Medikamente)</div>
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>Lieblingsfarbe</div>
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>Kontonummer + PIN</div>
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>Vorname</div>
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>Religionszugehörigkeit</div>
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>E-Mail-Adresse</div>
+</div>
+<button class="btn btn-p" onclick="chkSort('sort-sensitivity','sort-fb1c',['Lieblingsfarbe','Vorname','E-Mail-Adresse','Religionszugehörigkeit','Gesundheitsdaten (Diagnosen, Medikamente)','Kontonummer + PIN'])">Prüfen</button>
+<div id="sort-fb1c" class="qfb"></div></div>
+
+<div class="bnav"><button class="btn btn-p" id="done-btn-0" onclick="done(0)" disabled title="Bearbeite zuerst alle Pflichtaufgaben dieser Station">Station 1 abschließen ✓</button><button class="btn btn-o" onclick="go(1)">Weiter →</button></div>
+<div class="station-progress" id="sp0"><div class="sp-bar"><div class="sp-fill" id="sp0-fill"></div></div><span id="sp0-txt">0 / 3 Aufgaben</span></div>
+</div>
+
+<!-- ===================== STATION 1: DATENSCHUTZGESETZE ===================== -->
+<div class="st" id="s1">
+<div class="st-hd"><div class="st-ic or">⚖️</div><div><h2>Datenschutzgesetze</h2><small>Station 2 · ca. 40 Min.</small></div></div>
+
+<div class="c or"><div class="c-tag">📺 Video</div><h3>Die DSGVO einfach erklärt</h3>
+<p>Die Datenschutz-Grundverordnung gilt seit 2018 in der EU. Dieses Video erklärt die wichtigsten Punkte.</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/avljiCT-bRM" title="DSGVO einfach erklärt" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p style="margin-top:.5rem;font-size:.78rem;color:var(--muted)">⚠ Alternativ: Suche auf YouTube nach "DSGVO einfach erklärt".</p></div>
+
+<div class="c or"><div class="c-tag">📖 Lesen</div><h3>Das Wichtigste zur DSGVO</h3>
+<div class="tl" style="margin-top:.5rem">
+<div class="tl-i"><div class="tl-y">1983</div><div class="tl-t"><strong>Volkszählungsurteil</strong> – Das BVerfG entwickelt das Recht auf <em>informationelle Selbstbestimmung</em>.</div></div>
+<div class="tl-i"><div class="tl-y">1995</div><div class="tl-t"><strong>EU-Datenschutzrichtlinie</strong> – Erste europaweite Regelung, aber noch nicht einheitlich.</div></div>
+<div class="tl-i"><div class="tl-y">2018</div><div class="tl-t"><strong>DSGVO</strong> tritt in Kraft – gilt direkt in allen EU-Staaten, Bußgelder bis 20 Mio. € oder 4% des Jahresumsatzes.</div></div>
+</div>
+<h3 style="margin-top:1rem">Das Verbotsprinzip mit Erlaubnisvorbehalt</h3>
+<div class="hl or"><strong>Grundregel:</strong> Die Verarbeitung personenbezogener Daten ist grundsätzlich <em>verboten</em> – außer es gibt einen Erlaubnisgrund.</div>
+<p style="margin-top:.5rem">Erlaubnisgründe sind z. B.:</p>
+<ul style="margin-top:.3rem"><li>Die Person hat <strong>eingewilligt</strong></li><li>Es gibt einen <strong>Vertrag</strong></li><li>Es besteht eine <strong>gesetzliche Pflicht</strong></li><li>Es besteht ein <strong>berechtigtes Interesse</strong></li></ul>
+<h3 style="margin-top:1rem">Deine Rechte als Betroffene/r</h3>
+<ul class="cl"><li><strong>Auskunftsrecht</strong> – welche Daten hat ein Unternehmen über dich?</li><li><strong>Recht auf Berichtigung</strong> – falsche Daten müssen korrigiert werden</li><li><strong>Recht auf Löschung</strong> ("Recht auf Vergessen")</li><li><strong>Widerspruchsrecht</strong> – bestimmten Verarbeitungen widersprechen</li><li><strong>Beschwerderecht</strong> – bei der Datenschutzbehörde</li></ul></div>
+
+<div class="c or"><div class="c-tag">⚡ Dilemma</div><h3>Datenschutz vs. Fahndung nach Straftätern</h3>
+<div class="scn">Nach einem Anschlag möchte die Polizei alle Überwachungskameras auswerten und Gesichtserkennung einsetzen. Millionen Unbeteiligter werden dabei automatisch erfasst.</div>
+<p style="font-size:.84rem;margin-bottom:.6rem">Ordne die Argumente der richtigen Seite zu – ziehe sie in die passende Spalte.</p>
+<div class="drag-bank" id="drag-bank-dilemma">
+  <span class="drag-item" draggable="true" data-val="pro">🔒 Sicherheit der Allgemeinheit</span>
+  <span class="drag-item" draggable="true" data-val="con">👁 Massenüberwachung Unschuldiger</span>
+  <span class="drag-item" draggable="true" data-val="pro">⚡ Schnellere Fahndung</span>
+  <span class="drag-item" draggable="true" data-val="con">⚠️ Falschverdächtigung</span>
+  <span class="drag-item" draggable="true" data-val="pro">🎯 Täter kann gefasst werden</span>
+  <span class="drag-item" draggable="true" data-val="con">🏛 Grundrecht auf Privatsphäre</span>
+  <span class="drag-item" draggable="true" data-val="pro">🛡 Abschreckungswirkung</span>
+  <span class="drag-item" draggable="true" data-val="con">🔮 Missbrauchspotenzial</span>
+</div>
+<div class="drag-grid">
+  <div class="drag-col"><h4 style="color:var(--green)">✅ Dafür</h4><div class="drag-area" id="zone-dilemma-pro" data-expect="pro"></div></div>
+  <div class="drag-col"><h4 style="color:var(--orange)">❌ Dagegen</h4><div class="drag-area" id="zone-dilemma-con" data-expect="con"></div></div>
+</div>
+<button class="btn btn-p" onclick="chkDrag2('zone-dilemma-pro','zone-dilemma-con','drag-bank-dilemma','fb-dilemma',4)">Prüfen</button>
+<div id="fb-dilemma" class="qfb"></div>
+<div class="thk"><div class="thk-t">💬 Diskussion</div><p>Ab welchem Schweregrad einer Straftat wäre der Einsatz vertretbar? Bespreche mit deinem Sitznachbarn.</p></div></div>
+
+<!-- AUFGABE 2a: Richtig/Falsch wie original -->
+<div class="c"><div class="c-tag">🧠 Aufgabe 2a · Richtig oder Falsch?</div>
+<div id="q10"><p class="qq">1. Die Verarbeitung personenbezogener Daten ist grundsätzlich erlaubt.</p><div class="qo"><button onclick="ans(this,'q10','no')"><span class="lt">A</span> Richtig</button><button onclick="ans(this,'q10','ok')"><span class="lt">B</span> Falsch – es gilt das Verbotsprinzip</button></div><div id="q10-f" class="qfb"></div></div>
+<div id="q11" style="margin-top:.9rem"><p class="qq">2. Du hast das Recht, deine Daten löschen zu lassen.</p><div class="qo"><button onclick="ans(this,'q11','ok')"><span class="lt">A</span> Richtig – "Recht auf Vergessen"</button><button onclick="ans(this,'q11','no')"><span class="lt">B</span> Falsch</button></div><div id="q11-f" class="qfb"></div></div>
+<div id="q12" style="margin-top:.9rem"><p class="qq">3. Die DSGVO gilt nur in Deutschland.</p><div class="qo"><button onclick="ans(this,'q12','no')"><span class="lt">A</span> Richtig</button><button onclick="ans(this,'q12','ok')"><span class="lt">B</span> Falsch – in allen EU-Staaten</button></div><div id="q12-f" class="qfb"></div></div></div>
+
+<!-- AUFGABE 2b: Zuordnung Recht → Beschreibung per Drag & Drop -->
+<div class="c"><div class="c-tag">🎮 Aufgabe 2b · Rechte zuordnen</div><h3>Welches Recht ist das?</h3>
+<p style="margin-bottom:.7rem;font-size:.84rem">Ziehe jede Beschreibung zum passenden DSGVO-Recht.</p>
+<div class="drag-bank" id="drag-bank1">
+  <span class="drag-item" draggable="true" data-val="auskunft">„Ich möchte wissen, welche Daten ihr über mich habt."</span>
+  <span class="drag-item" draggable="true" data-val="loeschung">„Bitte löscht alle meine Daten."</span>
+  <span class="drag-item" draggable="true" data-val="berichtigung">„Mein Name ist falsch geschrieben."</span>
+  <span class="drag-item" draggable="true" data-val="widerspruch">„Ich möchte keine Werbemails mehr."</span>
+</div>
+<div class="drag-grid" style="grid-template-columns:1fr 1fr">
+  <div class="drag-col"><h4 style="color:var(--primary)">Auskunftsrecht</h4><div class="drag-area" id="zone-auskunft" data-expect="auskunft"></div></div>
+  <div class="drag-col"><h4 style="color:var(--primary)">Recht auf Löschung</h4><div class="drag-area" id="zone-loeschung" data-expect="loeschung"></div></div>
+  <div class="drag-col"><h4 style="color:var(--primary)">Recht auf Berichtigung</h4><div class="drag-area" id="zone-berichtigung" data-expect="berichtigung"></div></div>
+  <div class="drag-col"><h4 style="color:var(--primary)">Widerspruchsrecht</h4><div class="drag-area" id="zone-widerspruch" data-expect="widerspruch"></div></div>
+</div>
+<button class="btn btn-p" onclick="chkDragMulti(['zone-auskunft','zone-loeschung','zone-berichtigung','zone-widerspruch'],'drag-fb1')">Prüfen</button>
+<div id="drag-fb1" class="qfb"></div></div>
+
+<!-- AUFGABE 2c: Fallanalyse DSGVO-Grundsätze -->
+<div class="c or"><div class="c-tag">📖 Lesetext · Fallanalyse</div><h3>Grundsätze der DSGVO – Was wird hier verletzt?</h3>
+<div class="read-box">
+  <h4>Die sieben Grundsätze der DSGVO (Art. 5)</h4>
+  <p><strong>1. Rechtmäßigkeit, Verarbeitung nach Treu und Glauben, Transparenz</strong> – Daten dürfen nur mit gültigem Erlaubnisgrund verarbeitet werden; Betroffene müssen informiert werden.</p>
+  <p><strong>2. Zweckbindung</strong> – Daten dürfen nur für den Zweck genutzt werden, für den sie erhoben wurden.</p>
+  <p><strong>3. Datenminimierung</strong> – Es dürfen nur so viele Daten erhoben werden wie nötig.</p>
+  <p><strong>4. Richtigkeit</strong> – Daten müssen korrekt und aktuell sein.</p>
+  <p><strong>5. Speicherbegrenzung</strong> – Daten dürfen nur so lange gespeichert werden wie nötig.</p>
+  <p><strong>6. Integrität und Vertraulichkeit</strong> – Daten müssen technisch sicher geschützt werden.</p>
+  <p><strong>7. Rechenschaftspflicht</strong> – Verantwortliche müssen die Einhaltung nachweisen können.</p>
+</div>
+<p style="font-size:.84rem;margin:.8rem 0 .5rem">Welcher Grundsatz wird in diesen Fällen verletzt? Wähle jeweils die beste Antwort.</p>
+
+<div id="q1fall1" style="margin-top:.7rem"><p class="qq">Fall 1: Ein Online-Shop bittet bei der Registrierung um Beruf, Anzahl der Kinder und monatliches Einkommen – obwohl nur Name und Lieferadresse nötig wären.</p>
+<div class="qo">
+<button onclick="ans(this,'q1fall1','no')"><span class="lt">A</span> Zweckbindung</button>
+<button onclick="ans(this,'q1fall1','ok')"><span class="lt">B</span> Datenminimierung</button>
+<button onclick="ans(this,'q1fall1','no')"><span class="lt">C</span> Speicherbegrenzung</button>
+</div><div id="q1fall1-f" class="qfb"></div></div>
+
+<div id="q1fall2" style="margin-top:.7rem"><p class="qq">Fall 2: Eine Fitness-App nutzt die eingegebenen Gesundheitsdaten heimlich, um sie an Krankenversicherungen zu verkaufen.</p>
+<div class="qo">
+<button onclick="ans(this,'q1fall2','ok')"><span class="lt">A</span> Zweckbindung – Daten werden für einen anderen Zweck genutzt</button>
+<button onclick="ans(this,'q1fall2','no')"><span class="lt">B</span> Richtigkeit</button>
+<button onclick="ans(this,'q1fall2','no')"><span class="lt">C</span> Datenminimierung</button>
+</div><div id="q1fall2-f" class="qfb"></div></div>
+
+<div id="q1fall3" style="margin-top:.7rem"><p class="qq">Fall 3: Ein Arbeitgeber speichert Bewerbungsunterlagen ehemaliger Bewerber 15 Jahre lang, obwohl das Verfahren längst abgeschlossen ist.</p>
+<div class="qo">
+<button onclick="ans(this,'q1fall3','no')"><span class="lt">A</span> Transparenz</button>
+<button onclick="ans(this,'q1fall3','no')"><span class="lt">B</span> Richtigkeit</button>
+<button onclick="ans(this,'q1fall3','ok')"><span class="lt">C</span> Speicherbegrenzung</button>
+</div><div id="q1fall3-f" class="qfb"></div></div>
+</div>
+
+<!-- AUFGABE 2d: Lückentext DSGVO-Grundsätze -->
+<div class="c"><div class="c-tag">✏️ Aufgabe 2c · Lückentext DSGVO</div><h3>Fachbegriffe der DSGVO einsetzen</h3>
+<p style="font-size:.84rem;margin-bottom:.8rem">Klicke auf einen Begriff und dann auf die passende Lücke.</p>
+<div class="fill-options" id="fill-chips-dsgvo">
+  <span class="fill-chip" onclick="selectChip(this)">Zweckbindung</span>
+  <span class="fill-chip" onclick="selectChip(this)">Einwilligung</span>
+  <span class="fill-chip" onclick="selectChip(this)">Auskunftsrecht</span>
+  <span class="fill-chip" onclick="selectChip(this)">Datenminimierung</span>
+  <span class="fill-chip" onclick="selectChip(this)">Löschung</span>
+</div>
+<p class="fill-sentence">1. Der Grundsatz der <span class="fill-blank" data-ans="Datenminimierung" onclick="placeChip(this)">___________</span> besagt, dass nur so viele Daten erhoben werden dürfen, wie für den Zweck wirklich nötig sind.</p>
+<p class="fill-sentence">2. Dank des <span class="fill-blank" data-ans="Auskunftsrecht" onclick="placeChip(this)">___________</span>s kannst du jedes Unternehmen fragen, welche Daten es über dich gespeichert hat.</p>
+<p class="fill-sentence">3. Eine App darf deine GPS-Daten nicht plötzlich für Werbung nutzen, wenn sie ursprünglich nur für die Navigation erhoben wurden – das wäre ein Verstoß gegen die <span class="fill-blank" data-ans="Zweckbindung" onclick="placeChip(this)">___________</span>.</p>
+<p class="fill-sentence">4. Das Recht auf <span class="fill-blank" data-ans="Löschung" onclick="placeChip(this)">___________</span> wird auch „Recht auf Vergessen" genannt.</p>
+<p class="fill-sentence">5. Ohne gültige <span class="fill-blank" data-ans="Einwilligung" onclick="placeChip(this)">___________</span> oder einen anderen Erlaubnisgrund ist die Verarbeitung personenbezogener Daten grundsätzlich verboten.</p>
+<div style="margin-top:.8rem"><button class="btn btn-p" onclick="chkFill2('fill-chips-dsgvo','fill-fb2d')">Prüfen</button></div>
+<div id="fill-fb2d" class="qfb"></div></div>
+
+<div class="bnav"><button class="btn btn-p" id="done-btn-1" onclick="done(1)" disabled title="Bearbeite zuerst alle Pflichtaufgaben dieser Station">Station 2 abschließen ✓</button><button class="btn btn-o" onclick="go(2)">Weiter →</button></div>
+<div class="station-progress" id="sp1"><div class="sp-bar"><div class="sp-fill" id="sp1-fill"></div></div><span id="sp1-txt">0 / 3 Aufgaben</span></div>
+</div>
+
+<!-- ===================== STATION 2: PERSÖNLICHE DATEN ===================== -->
+<div class="st" id="s2">
+<div class="st-hd"><div class="st-ic pu">🛡</div><div><h2>Persönliche Daten schützen</h2><small>Station 3 · ca. 40 Min.</small></div></div>
+
+<div class="c pu"><div class="c-tag">📺 Video</div><h3>Identitätsdiebstahl &amp; Datenmissbrauch</h3>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yyDUC1LUXSU" title="Identitätsdiebstahl &amp; Datenmissbrauch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p style="margin-top:.5rem;font-size:.78rem;color:var(--muted)">⚠ Alternativ: "Identitätsdiebstahl einfach erklärt" oder "Phishing erkennen" auf YouTube suchen.</p></div>
+
+<!-- LESETEXT mit Verständnisfragen -->
+<div class="c pu"><div class="c-tag">📖 Lesetext &amp; Analyse</div><h3>Der Fall „Carolin"</h3>
+<div class="read-box">
+  <h4>Eine wahre Geschichte – leicht verändert</h4>
+  <p>Carolin ist 17 Jahre alt und sehr aktiv auf Social Media. Auf Instagram postet sie regelmäßig Fotos von sich und ihren Freunden, gibt ihren Wohnort in ihrem Profil an und nutzt gerne die Standortfunktion bei ihren Beiträgen. Ihr Profil ist öffentlich.</p>
+  <p>Eines Morgens wacht sie auf und kann sich nicht mehr bei ihrem Instagram-Account anmelden. Kurz darauf erhalten ihre Freunde merkwürdige Nachrichten von „ihr" – mit der Bitte, Geld über PayPal zu schicken. Jemand hat Carolins Account übernommen.</p>
+  <p>Aber damit nicht genug: Zwei Wochen später bekommt Carolins Mutter Post. Ein Paketdienst fordert die Bezahlung für ein teures Smartphone – bestellt unter Carolins Namen, an eine fremde Adresse. Jemand hat Carolins persönliche Daten genutzt, um in ihrem Namen einzukaufen.</p>
+  <p>Wie war das möglich? Carolin hatte auf einer gefälschten Gewinnspiel-Website ihr Passwort eingegeben, ohne die URL genau zu prüfen. Dieses Passwort nutzte sie auch für andere Dienste.</p>
+</div>
+
+<div id="qs20" style="margin-top:.9rem"><p class="qq">Frage 1: Welcher Angriff hat Carolins Account-Übernahme ermöglicht?</p>
+<div class="qo"><button onclick="ans(this,'qs20','no')"><span class="lt">A</span> Ein Datenleck bei Instagram</button><button onclick="ans(this,'qs20','ok')"><span class="lt">B</span> Phishing – sie gab ihr Passwort auf einer gefälschten Website ein</button><button onclick="ans(this,'qs20','no')"><span class="lt">C</span> Ein Hacker hat ihr WLAN abgehört</button></div><div id="qs20-f" class="qfb"></div></div>
+
+<div id="qs21" style="margin-top:.9rem"><p class="qq">Frage 2: Welcher Begriff beschreibt, dass jemand in Carolins Namen ein Smartphone bestellt hat?</p>
+<div class="qo"><button onclick="ans(this,'qs21','no')"><span class="lt">A</span> Doxxing</button><button onclick="ans(this,'qs21','no')"><span class="lt">B</span> Datenleck</button><button onclick="ans(this,'qs21','ok')"><span class="lt">C</span> Identitätsdiebstahl</button></div><div id="qs21-f" class="qfb"></div></div>
+
+<div id="qs22" style="margin-top:.9rem"><p class="qq">Frage 3: Welcher Fehler hat das Problem noch verschlimmert?</p>
+<div class="qo"><button onclick="ans(this,'qs22','ok')"><span class="lt">A</span> Carolin nutzte dasselbe Passwort für mehrere Dienste</button><button onclick="ans(this,'qs22','no')"><span class="lt">B</span> Carolin hatte kein Profilfoto</button><button onclick="ans(this,'qs22','no')"><span class="lt">C</span> Carolin hat zu wenig gepostet</button></div><div id="qs22-f" class="qfb"></div></div>
+</div>
+
+<div class="c pu"><div class="c-tag">📖 Lesen</div><h3>Was kann schiefgehen?</h3>
+<div class="ig"><div class="ic2"><div class="e">🎣</div><div class="t">Phishing</div><div class="d">Gefälschte E-Mails / Websites, die Passwörter oder Bankdaten erschleichen.</div></div><div class="ic2"><div class="e">👤</div><div class="t">Identitätsdiebstahl</div><div class="d">Kriminelle handeln in deinem Namen – Verträge, Bestellungen, Betrug.</div></div><div class="ic2"><div class="e">📦</div><div class="t">Datenlecks</div><div class="d">Unternehmen werden gehackt, E-Mails und Passwörter landen im Darknet.</div></div><div class="ic2"><div class="e">📍</div><div class="t">Stalking / Doxxing</div><div class="d">Öffentliche Daten werden zusammengetragen, um Personen zu bedrohen.</div></div></div>
+<h3 style="margin-top:1rem">Mehrbenutzerproblematik bei Datenbanken</h3>
+<p>In vielen Systemen (Krankenhaus, Schule, Firma) arbeiten viele Personen mit denselben Daten:</p>
+<ul class="cl" style="margin-top:.3rem"><li>Wer darf welche Daten sehen? → <strong>Zugriffsrechte</strong></li><li>Zwei Personen ändern gleichzeitig? → <strong>Konsistenz</strong></li><li>Kein Unbefugter darf zugreifen → <strong>Authentifizierung</strong></li><li>Versehentliche Löschung? → <strong>Backup &amp; Logging</strong></li></ul></div>
+
+<!-- AUFGABE: Lückentext -->
+<div class="c"><div class="c-tag">✏️ Aufgabe 3 · Lückentext</div><h3>Fachbegriffe einsetzen</h3>
+<p style="font-size:.84rem;margin-bottom:.8rem">Klicke auf ein Wort aus der Liste und dann auf die passende Lücke.</p>
+<div class="fill-options" id="fill-chips">
+  <span class="fill-chip" onclick="selectChip(this)">Phishing</span>
+  <span class="fill-chip" onclick="selectChip(this)">Zwei-Faktor-Authentifizierung</span>
+  <span class="fill-chip" onclick="selectChip(this)">Passwortmanager</span>
+  <span class="fill-chip" onclick="selectChip(this)">Identitätsdiebstahl</span>
+  <span class="fill-chip" onclick="selectChip(this)">Datenleck</span>
+</div>
+<p class="fill-sentence">1. Wenn Kriminelle gefälschte E-Mails versenden, um Zugangsdaten zu stehlen, nennt man das <span class="fill-blank" data-ans="Phishing" onclick="placeChip(this)">___________</span>.</p>
+<p class="fill-sentence">2. Nutzt jemand deine Daten, um in deinem Namen Verträge abzuschließen, spricht man von <span class="fill-blank" data-ans="Identitätsdiebstahl" onclick="placeChip(this)">___________</span>.</p>
+<p class="fill-sentence">3. Ein <span class="fill-blank" data-ans="Passwortmanager" onclick="placeChip(this)">___________</span> hilft dabei, für jeden Dienst ein anderes, sicheres Passwort zu verwenden.</p>
+<p class="fill-sentence">4. Die <span class="fill-blank" data-ans="Zwei-Faktor-Authentifizierung" onclick="placeChip(this)">___________</span> schützt Accounts, selbst wenn das Passwort gestohlen wurde.</p>
+<p class="fill-sentence">5. Wenn Hacker in eine Datenbank einbrechen und Nutzerdaten stehlen, nennt man das ein <span class="fill-blank" data-ans="Datenleck" onclick="placeChip(this)">___________</span>.</p>
+<div style="margin-top:.8rem"><button class="btn btn-p" onclick="chkFill('fill-fb3')">Prüfen</button></div>
+<div id="fill-fb3" class="qfb"></div></div>
+
+<div class="c pu"><div class="c-tag">🔐 Selbst-Check</div><h3>Dein Datenschutz-Check</h3>
+<p style="margin-bottom:1rem;font-size:.84rem">Kreuze für jeden Punkt an, ob du das bereits machst oder ob du es noch verbessern möchtest.</p>
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:.84rem">
+  <thead>
+    <tr>
+      <th style="text-align:left;padding:.5rem .6rem;border-bottom:2px solid var(--border);font-weight:600;color:var(--text)">Maßnahme</th>
+      <th style="text-align:center;padding:.5rem .8rem;border-bottom:2px solid var(--border);white-space:nowrap;color:var(--green);font-weight:600">✅ Mache ich bereits</th>
+      <th style="text-align:center;padding:.5rem .8rem;border-bottom:2px solid var(--border);white-space:nowrap;color:var(--orange);font-weight:600">🔧 Will ich verbessern</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:.55rem .6rem">Für jeden Dienst ein <strong>anderes Passwort</strong> (mind. 12 Zeichen)</td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc1" value="ok" style="accent-color:var(--green);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc1" value="no" style="accent-color:var(--orange);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border);background:var(--card-alt)">
+      <td style="padding:.55rem .6rem">Einen <strong>Passwortmanager</strong> nutzen</td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc2" value="ok" style="accent-color:var(--green);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc2" value="no" style="accent-color:var(--orange);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:.55rem .6rem"><strong>Zwei-Faktor-Authentifizierung</strong> für wichtige Accounts aktiviert</td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc3" value="ok" style="accent-color:var(--green);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc3" value="no" style="accent-color:var(--orange);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border);background:var(--card-alt)">
+      <td style="padding:.55rem .6rem">App-<strong>Berechtigungen</strong> auf dem Smartphone überprüft</td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc4" value="ok" style="accent-color:var(--green);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc4" value="no" style="accent-color:var(--orange);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:.55rem .6rem"><strong>Datenschutzeinstellungen</strong> bei Instagram, TikTok &amp; Co. geprüft</td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc5" value="ok" style="accent-color:var(--green);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+      <td style="text-align:center;padding:.55rem .8rem"><input type="radio" name="sc5" value="no" style="accent-color:var(--orange);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+    </tr>
+    <tr>
+      <td style="padding:.55rem .6rem;background:var(--card-alt)">Bei E-Mails immer die <strong>echte Absenderadresse</strong> prüfen</td>
+      <td style="text-align:center;padding:.55rem .8rem;background:var(--card-alt)"><input type="radio" name="sc6" value="ok" style="accent-color:var(--green);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+      <td style="text-align:center;padding:.55rem .8rem;background:var(--card-alt)"><input type="radio" name="sc6" value="no" style="accent-color:var(--orange);width:1.1rem;height:1.1rem;cursor:pointer"></td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+
+<!-- AUFGABE 3b: Phishing-Mail erkennen -->
+<div class="c pu"><div class="c-tag">🔍 Aufgabe 3b · Detektivarbeit</div><h3>Phishing-Mail oder echt?</h3>
+<p style="font-size:.84rem;margin-bottom:.7rem">Lies diese E-Mail aufmerksam. Finde alle verdächtigen Merkmale.</p>
+<div class="read-box" style="font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.8">
+  <p><strong>Von:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="73000603031c0107330003120118120000165e001a101b16011b161a075d17165e1f1c141a1d5d101c1e">[email&#160;protected]</a></p>
+  <p><strong>Betreff:</strong> ⚠️ DRINGEND: Ihr Konto wird in 24 Stunden gesperrt!</p>
+  <p style="margin-top:.5rem">Sehr geehrter Kunde,</p>
+  <p>wir haben ungewöhnliche Aktivitäten auf Ihrem Konto festgestellt. Um eine Sperrung zu verhindern, müssen Sie Ihre Daten sofort bestätigen:</p>
+  <p><strong>→ Jetzt klicken: http://sparkasse-verify-login.ru/konto</strong></p>
+  <p>Bitte geben Sie Ihre Kontonummer, PIN und TAN ein. Bei Fragen rufen Sie uns an: 0900-SPARKASSE (kostenpflichtig, 2,99€/Min.)</p>
+  <p>Mit freundlichen Grüßen,<br>Ihr Sparkassen-Team</p>
+</div>
+<div id="q3phish1" style="margin-top:.9rem"><p class="qq">Welche vier Merkmale deuten auf eine Phishing-Mail hin? <em>(Wähle alle richtigen)</em></p>
+<div id="q3phish1m" style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:.7rem">
+  <label class="mo" data-c="1"><input type="checkbox"> Die Absenderadresse enthält eine verdächtige Domain (de-login.com)</label>
+  <label class="mo" data-c="0"><input type="checkbox"> Die E-Mail beginnt mit „Sehr geehrter Kunde" (kein Name)</label>
+  <label class="mo" data-c="1"><input type="checkbox"> Der Link führt auf eine .ru-Domain, nicht auf sparkasse.de</label>
+  <label class="mo" data-c="1"><input type="checkbox"> Es wird nach PIN und TAN per E-Mail gefragt – echte Banken tun das nie</label>
+  <label class="mo" data-c="0"><input type="checkbox"> Die E-Mail hat einen Betreff</label>
+  <label class="mo" data-c="1"><input type="checkbox"> Künstliche Dringlichkeit: „24 Stunden" und „DRINGEND"</label>
+</div>
+<button class="btn btn-p" onclick="chkM3('q3phish1m','q3phish1-f')">Prüfen</button>
+<div id="q3phish1-f" class="qfb"></div></div></div>
+
+<!-- AUFGABE 3c: Passwortsicherheit berechnen -->
+<div class="c"><div class="c-tag">🧮 Aufgabe 3c · Passwortsicherheit</div><h3>Wie sicher ist dein Passwort?</h3>
+<p style="font-size:.84rem;margin-bottom:.6rem">Bewerte die folgenden Passwörter und ordne sie von <strong>unsicher</strong> bis <strong>sehr sicher</strong>.</p>
+<div class="sort-items" id="sort-passwords">
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>Tr0ub4dor&amp;3 (10 Zeichen, Sonderzeichen)</div>
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>123456</div>
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>correct horse battery staple (4 Wörter, 28 Zeichen)</div>
+  <div class="sort-item" draggable="true"><span class="sort-handle">⠿</span>Max2008</div>
+</div>
+<button class="btn btn-p" onclick="chkSort('sort-passwords','sort-fb-pw',['123456','Max2008','Tr0ub4dor&3 (10 Zeichen, Sonderzeichen)','correct horse battery staple (4 Wörter, 28 Zeichen)'])">Prüfen</button>
+<div id="sort-fb-pw" class="qfb"></div>
+<div class="hl pu" style="margin-top:.8rem">💡 <strong>Merke:</strong> Länge schlägt Komplexität. Ein langes Satz-Passwort aus echten Wörtern ist oft sicherer als ein kurzes Kauderwelsch-Passwort – und leichter zu merken.</div></div>
+
+<div class="bnav"><button class="btn btn-p" id="done-btn-2" onclick="done(2)" disabled title="Bearbeite zuerst alle Pflichtaufgaben dieser Station">Station 3 abschließen ✓</button><button class="btn btn-o" onclick="go(3)">Weiter →</button></div>
+<div class="station-progress" id="sp2"><div class="sp-bar"><div class="sp-fill" id="sp2-fill"></div></div><span id="sp2-txt">0 / 3 Aufgaben</span></div>
+</div>
+
+<!-- ===================== STATION 3: DATA-MINING ===================== -->
+<div class="st" id="s3">
+<div class="st-hd"><div class="st-ic gr">📊</div><div><h2>Data-Mining</h2><small>Station 4 · ca. 35 Min.</small></div></div>
+
+<div class="c gr"><div class="c-tag">📺 Video</div><h3>Big Data &amp; Algorithmen</h3>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/kdL1AjYWWgQ" title="Big Data einfach erklärt" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p style="margin-top:.5rem;font-size:.78rem;color:var(--muted)">⚠ Alternativ: "Data Mining einfach erklärt" oder "Big Data Doku deutsch" auf YouTube suchen.</p></div>
+
+<div class="c gr"><div class="c-tag">📖 Lesen</div><h3>Muster in Datenbergen finden</h3>
+<p><strong>Data-Mining</strong> = automatisiertes Durchsuchen und Analysieren großer Datenmengen, um Muster, Zusammenhänge oder Vorhersagen zu finden.</p>
+<div class="hl gr"><strong>Beispiel:</strong> Ein US-Supermarkt erkannte durch Data-Mining, dass Frauen, die bestimmte Vitaminpräparate kauften, häufig schwanger waren – und schickte ihnen Babyprodukt-Werbung, bevor sie es jemandem erzählt hatten.</div>
+<h3 style="margin-top:1rem">Anwendungsbereiche</h3>
+<div class="ag"><div class="ac"><div class="e">🛒</div><div class="t">E-Commerce</div><div class="d">Produktempfehlungen</div></div><div class="ac"><div class="e">🏥</div><div class="t">Medizin</div><div class="d">Krebsfrüherkennung</div></div><div class="ac"><div class="e">🏦</div><div class="t">Finanzen</div><div class="d">Betrugserkennung</div></div><div class="ac"><div class="e">🎵</div><div class="t">Streaming</div><div class="d">Empfehlungsalgorithmen</div></div><div class="ac"><div class="e">🗳</div><div class="t">Politik</div><div class="d">Cambridge Analytica</div></div><div class="ac"><div class="e">🚔</div><div class="t">Polizei</div><div class="d">Predictive Policing</div></div></div>
+<p style="font-size:.84rem;margin:.6rem 0">Ordne die Punkte der richtigen Seite zu – ziehe sie in die passende Spalte.</p>
+<div class="drag-bank" id="drag-bank-mining">
+  <span class="drag-item" draggable="true" data-val="chance">💊 Bessere Krebsfrüherkennung</span>
+  <span class="drag-item" draggable="true" data-val="risiko">🔍 Gläserne Menschen</span>
+  <span class="drag-item" draggable="true" data-val="chance">🌍 Präzisere Klimamodelle</span>
+  <span class="drag-item" draggable="true" data-val="risiko">⚖️ Algorithmische Diskriminierung</span>
+  <span class="drag-item" draggable="true" data-val="chance">🛡 Betrugserkennung</span>
+  <span class="drag-item" draggable="true" data-val="risiko">🗳 Wahlmanipulation</span>
+  <span class="drag-item" draggable="true" data-val="chance">🚗 Sicheres autonomes Fahren</span>
+  <span class="drag-item" draggable="true" data-val="risiko">🔮 Vorhersage ≠ Wahrheit</span>
+</div>
+<div class="drag-grid">
+  <div class="drag-col"><h4 style="color:var(--green)">✅ Chancen</h4><div class="drag-area" id="zone-mining-chance" data-expect="chance"></div></div>
+  <div class="drag-col"><h4 style="color:var(--orange)">⚠️ Risiken</h4><div class="drag-area" id="zone-mining-risiko" data-expect="risiko"></div></div>
+</div>
+<button class="btn btn-p" onclick="chkDrag2('zone-mining-chance','zone-mining-risiko','drag-bank-mining','fb-mining',4)">Prüfen</button>
+<div id="fb-mining" class="qfb"></div>
+
+<!-- LESETEXT Cambridge Analytica + Fragen -->
+<div class="c gr"><div class="c-tag">📖 Lesetext · Fallbeispiel</div><h3>Cambridge Analytica – Daten als Waffe</h3>
+<div class="read-box">
+  <h4>Was ist passiert?</h4>
+  <p>Im Jahr 2016 wurde bekannt, dass die britische Firma Cambridge Analytica Daten von ca. 87 Millionen Facebook-Nutzern ohne deren Wissen gesammelt und ausgewertet hatte. Die Daten stammten aus einer Quiz-App, die sich weitaus mehr Rechte an den Nutzerprofilen verschaffte, als für das Quiz nötig gewesen wäre.</p>
+  <p>Cambridge Analytica erstellte aus diesen Daten psychologische Profile: Welche Themen bewegen die Menschen? Was macht ihnen Angst? Welche politischen Botschaften sprechen sie an? Diese Profile wurden dann genutzt, um im US-Wahlkampf 2016 gezielt personalisierte Werbung zu schalten – auf Facebook, Instagram und anderen Plattformen.</p>
+  <p>Facebook wusste von der Datenweitergabe und unternahm jahrelang nichts. Erst als der Skandal öffentlich wurde, musste Mark Zuckerberg vor dem US-Kongress aussagen. Facebook zahlte schließlich eine Strafe von 5 Milliarden US-Dollar – die höchste Strafe, die die US-Handelsbehörde FTC je verhängt hatte.</p>
+  <p>Der Skandal zeigte: Data-Mining ist nicht nur ein technisches, sondern ein politisches und gesellschaftliches Problem.</p>
+</div>
+
+<div id="qca1" style="margin-top:.9rem"><p class="qq">Frage 1: Wie gelangten die Daten zu Cambridge Analytica?</p>
+<div class="qo"><button onclick="ans(this,'qca1','no')"><span class="lt">A</span> Durch einen Hackerangriff auf Facebook</button><button onclick="ans(this,'qca1','ok')"><span class="lt">B</span> Über eine Quiz-App, die sich zu viele Zugriffsrechte verschaffte</button><button onclick="ans(this,'qca1','no')"><span class="lt">C</span> Cambridge Analytica kaufte die Daten direkt von Facebook</button></div><div id="qca1-f" class="qfb"></div></div>
+
+<div id="qca2" style="margin-top:.9rem"><p class="qq">Frage 2: Für welchen Zweck wurden die psychologischen Profile eingesetzt?</p>
+<div class="qo"><button onclick="ans(this,'qca2','no')"><span class="lt">A</span> Zur medizinischen Forschung</button><button onclick="ans(this,'qca2','ok')"><span class="lt">B</span> Für gezielte politische Werbung im US-Wahlkampf</button><button onclick="ans(this,'qca2','no')"><span class="lt">C</span> Um Produktempfehlungen zu verbessern</button></div><div id="qca2-f" class="qfb"></div></div>
+
+<div class="thk" style="margin-top:.8rem"><div class="thk-t">💭 Weiterdenken</div><p>Welche DSGVO-Grundsätze wurden hier verletzt? Überlege: Gab es eine Einwilligung? War die Datenmenge verhältnismäßig? Wurden die Daten für den ursprünglichen Zweck genutzt?</p></div></div>
+
+<!-- MEMORY-SPIEL -->
+<div class="c"><div class="c-tag">🎮 Aufgabe 4 · Memory: Begriff &amp; Definition</div><h3>Finde die passenden Paare</h3>
+<p style="font-size:.84rem;margin-bottom:.6rem">Klicke zwei Karten an – stimmen Begriff und Definition überein, bleiben sie aufgedeckt.</p>
+<div class="mem-stat" id="mem-stat">Paare gefunden: 0 / 5 · Versuche: 0</div>
+<div class="memory-grid" id="mem-grid"></div>
+<div id="mem-win" style="display:none" class="qfb vis g" style="margin-top:.5rem">🎉 Super! Alle Paare gefunden!</div>
+</div>
+
+<!-- AUFGABE: Standard-Quiz -->
+<div class="c"><div class="c-tag">🧠 Aufgabe 4b · Wissensfragen</div>
+<div id="q30"><p class="qq">Was beschreibt Data-Mining am besten?</p><div class="qo"><button onclick="ans(this,'q30','no')"><span class="lt">A</span> Abbauen von Chips in Computern</button><button onclick="ans(this,'q30','no')"><span class="lt">B</span> Manuelles Durchsuchen von Akten</button><button onclick="ans(this,'q30','ok')"><span class="lt">C</span> Automatisiertes Analysieren großer Datenmengen, um Muster zu finden</button></div><div id="q30-f" class="qfb"></div></div>
+<div id="q31" style="margin-top:.9rem"><p class="qq">Welches Ereignis zeigte die gesellschaftliche Gefahr durch Data-Mining?</p><div class="qo"><button onclick="ans(this,'q31','ok')"><span class="lt">A</span> Der Cambridge-Analytica-Skandal</button><button onclick="ans(this,'q31','no')"><span class="lt">B</span> Der Launch von Google Maps</button><button onclick="ans(this,'q31','no')"><span class="lt">C</span> Die Einführung von WLAN in Schulen</button></div><div id="q31-f" class="qfb"></div></div></div>
+
+<!-- AUFGABE 4c: Algorithmus-Perspektive -->
+<div class="c gr"><div class="c-tag">🤖 Aufgabe 4c · Algorithmus-Perspektive</div><h3>Was schließt der Algorithmus über dich?</h3>
+<p style="font-size:.84rem;margin-bottom:.7rem">Algorithmen ziehen aus harmlosen Daten erstaunlich genaue Schlüsse. Ordne jedem Datenmuster den wahrscheinlichen Schluss des Algorithmus zu.</p>
+<div class="drag-bank" id="drag-bank-algo">
+  <span class="drag-item" draggable="true" data-val="schwanger">Kauft ab Woche 12 Folsäure, geruchsneutrales Shampoo, große Handtücher</span>
+  <span class="drag-item" draggable="true" data-val="depressiv">Tippt nachts zwischen 1–4 Uhr, öffnet dieselben Seiten mehrfach, kaum Einkäufe</span>
+  <span class="drag-item" draggable="true" data-val="umzug">Kauft Klebeband, Kartons, Adressaufkleber; sucht nach Umzugsunternehmen</span>
+  <span class="drag-item" draggable="true" data-val="job">Aktualisiert LinkedIn, downloaded Lebenslauf-Templates, besucht Stellenbörsen</span>
+</div>
+<div class="drag-grid" style="grid-template-columns:1fr 1fr">
+  <div class="drag-col"><h4 style="color:var(--green)">🤰 Wahrscheinlich schwanger</h4><div class="drag-area" id="zone-schwanger" data-expect="schwanger"></div></div>
+  <div class="drag-col"><h4 style="color:var(--orange)">😔 Möglicherweise depressiv</h4><div class="drag-area" id="zone-depressiv" data-expect="depressiv"></div></div>
+  <div class="drag-col"><h4 style="color:var(--primary)">📦 Plant Umzug</h4><div class="drag-area" id="zone-umzug" data-expect="umzug"></div></div>
+  <div class="drag-col"><h4 style="color:var(--purple)">💼 Sucht neuen Job</h4><div class="drag-area" id="zone-job" data-expect="job"></div></div>
+</div>
+<button class="btn btn-p" onclick="chkDragMulti(['zone-schwanger','zone-depressiv','zone-umzug','zone-job'],'fb-algo')">Prüfen</button>
+<div id="fb-algo" class="qfb"></div>
+<div class="thk" style="margin-top:.8rem"><div class="thk-t">💭 Reflexion</div><p>Diese Schlüsse werden aus öffentlichen Kaufdaten gezogen – ohne dass du etwas preisgegeben hast. Wie fühlt sich das an? Sollte das erlaubt sein? Was wäre eine faire Regelung?</p></div>
+</div></div>
+
+<div class="bnav"><button class="btn btn-p" id="done-btn-3" onclick="done(3)" disabled title="Bearbeite zuerst alle Pflichtaufgaben dieser Station">Station 4 abschließen ✓</button><button class="btn btn-o" id="quiz-weiter-btn" onclick="goQuiz()" disabled title="Schließe Station 4 zuerst ab">Zum Abschluss-Quiz →</button></div>
+<div class="station-progress" id="sp3"><div class="sp-bar"><div class="sp-fill" id="sp3-fill"></div></div><span id="sp3-txt">0 / 3 Aufgaben</span></div>
+</div>
+
+<!-- ===================== STATION 4: ABSCHLUSS-QUIZ ===================== -->
+<div class="st" id="s4">
+<div class="st-hd"><div class="st-ic bl">🏆</div><div><h2>Abschluss-Quiz</h2><small>Station 5 · Teste dein Wissen!</small></div></div>
+<div class="c bl"><div class="c-tag">🎯 Challenge</div><h3>10 Fragen – Ziel: mindestens 8 Punkte!</h3></div>
+
+<div class="c" id="fq0"><p class="qq">1. Was bedeutet "Verbotsprinzip mit Erlaubnisvorbehalt"?</p><div class="qo"><button onclick="fq(this,0,'no')"><span class="lt">A</span> Datenverarbeitung ist erlaubt, solange niemand klagt</button><button onclick="fq(this,0,'ok')"><span class="lt">B</span> Datenverarbeitung ist grundsätzlich verboten, es sei denn es gibt einen Erlaubnisgrund</button><button onclick="fq(this,0,'no')"><span class="lt">C</span> Nur Behörden dürfen Daten verarbeiten</button></div><div id="fq0-f" class="qfb"></div></div>
+<div class="c" id="fq1"><p class="qq">2. Ab welchem Alter gilt man in Deutschland als einwilligungsfähig für soziale Netzwerke (DSGVO)?</p><div class="qo"><button onclick="fq(this,1,'no')"><span class="lt">A</span> 13 Jahre</button><button onclick="fq(this,1,'ok')"><span class="lt">B</span> 16 Jahre</button><button onclick="fq(this,1,'no')"><span class="lt">C</span> 18 Jahre</button></div><div id="fq1-f" class="qfb"></div></div>
+<div class="c" id="fq2"><p class="qq">3. Was ist eine IP-Adresse im Datenschutz-Kontext?</p><div class="qo"><button onclick="fq(this,2,'no')"><span class="lt">A</span> Eine Art Postleitzahl für Websites</button><button onclick="fq(this,2,'ok')"><span class="lt">B</span> Ein personenbezogenes Datum, das deinen Internetanschluss identifiziert</button><button onclick="fq(this,2,'no')"><span class="lt">C</span> Der Code deines Passworts</button></div><div id="fq2-f" class="qfb"></div></div>
+<div class="c" id="fq3"><p class="qq">4. Welches Recht nutzt du, um zu erfahren, welche Daten Facebook über dich hat?</p><div class="qo"><button onclick="fq(this,3,'no')"><span class="lt">A</span> Widerspruchsrecht</button><button onclick="fq(this,3,'ok')"><span class="lt">B</span> Auskunftsrecht (Art. 15 DSGVO)</button><button onclick="fq(this,3,'no')"><span class="lt">C</span> Datenportabilität</button></div><div id="fq3-f" class="qfb"></div></div>
+<div class="c" id="fq4"><p class="qq">5. Was ist "Predictive Policing"?</p><div class="qo"><button onclick="fq(this,4,'no')"><span class="lt">A</span> Polizisten werden durch Roboter ersetzt</button><button onclick="fq(this,4,'ok')"><span class="lt">B</span> Algorithmen sagen vorher, wo Straftaten wahrscheinlich stattfinden</button><button onclick="fq(this,4,'no')"><span class="lt">C</span> Bürger melden Verdächtige online</button></div><div id="fq4-f" class="qfb"></div></div>
+<div class="c" id="fq5"><p class="qq">6. Was macht Phishing aus?</p><div class="qo"><button onclick="fq(this,5,'ok')"><span class="lt">A</span> Erschleichen von Zugangsdaten durch gefälschte E-Mails oder Websites</button><button onclick="fq(this,5,'no')"><span class="lt">B</span> Illegales Kopieren von Filmen</button><button onclick="fq(this,5,'no')"><span class="lt">C</span> Ausspähen von WLAN-Passwörtern</button></div><div id="fq5-f" class="qfb"></div></div>
+<div class="c" id="fq6"><p class="qq">7. Datenschutz vs. Datensicherheit – der Unterschied?</p><div class="qo"><button onclick="fq(this,6,'ok')"><span class="lt">A</span> Datenschutz = Recht auf informationelle Selbstbestimmung; Datensicherheit = technischer Schutz vor Verlust/Diebstahl</button><button onclick="fq(this,6,'no')"><span class="lt">B</span> Datensicherheit ist der gesetzliche, Datenschutz der technische Begriff</button><button onclick="fq(this,6,'no')"><span class="lt">C</span> Es gibt keinen Unterschied</button></div><div id="fq6-f" class="qfb"></div></div>
+<div class="c" id="fq7"><p class="qq">8. Welches Grundrecht bildet die Basis des deutschen Datenschutzes?</p><div class="qo"><button onclick="fq(this,7,'no')"><span class="lt">A</span> Meinungsfreiheit (Art. 5 GG)</button><button onclick="fq(this,7,'ok')"><span class="lt">B</span> Informationelle Selbstbestimmung (Art. 2 Abs. 1 i.V.m. Art. 1 GG)</button><button onclick="fq(this,7,'no')"><span class="lt">C</span> Eigentumsfreiheit (Art. 14 GG)</button></div><div id="fq7-f" class="qfb"></div></div>
+<div class="c" id="fq8"><p class="qq">9. Ein Unternehmen speichert dauerhaft alle Kaufdaten, obwohl du jahrelang nichts gekauft hast. Welcher Grundsatz wird verletzt?</p><div class="qo"><button onclick="fq(this,8,'no')"><span class="lt">A</span> Transparenz</button><button onclick="fq(this,8,'ok')"><span class="lt">B</span> Speicherbegrenzung – Daten nur so lange wie nötig</button><button onclick="fq(this,8,'no')"><span class="lt">C</span> Zweckbindung</button></div><div id="fq8-f" class="qfb"></div></div>
+<div class="c" id="fq9"><p class="qq">10. Warum können "anonyme" Datensätze gefährlich sein?</p><div class="qo"><button onclick="fq(this,9,'no')"><span class="lt">A</span> Weil anonyme Daten automatisch gelöscht werden</button><button onclick="fq(this,9,'no')"><span class="lt">B</span> Weil sie immer noch den Namen enthalten</button><button onclick="fq(this,9,'ok')"><span class="lt">C</span> Durch Kombination mehrerer Datensätze ist Re-Identifikation möglich</button></div><div id="fq9-f" class="qfb"></div></div>
+
+<div class="c" id="fres" style="display:none"><div class="fs">
+<div class="fs-c"><div class="p" id="fp">0</div><div class="l">/ 10</div></div>
+<h2 id="ft" style="margin-bottom:.3rem"></h2>
+<p id="fm" style="color:var(--muted);font-size:.88rem;max-width:380px;margin:0 auto"></p>
+<div style="margin-top:1rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap"><button class="btn btn-o" onclick="redo()">Quiz wiederholen</button><button class="btn btn-p" onclick="go(0)">Von vorne</button></div>
+</div></div>
+<div id="fbw" class="bnav"><button class="btn btn-p" id="fbtn" onclick="showRes()" style="display:none">Ergebnis anzeigen 🏆</button></div>
+
+
+</div>
+
+</main>
+
+<footer style="text-align:center;padding:.8rem 1rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);background:var(--card);margin-top:2rem">
+  © Stefanie Bokelberg · Erstellt mit Unterstützung von Claude (Anthropic)
+</footer>
+
+<script>
+// ── CORE ──────────────────────────────────────────────────────────────
+const K='ds-lz-v4';let comp=new Set(),cur=0,fs=0,fa=Array(10).fill(0),fc=0;
+function save(){try{const s={c:[...comp],cur,t:new Date().toISOString()};localStorage.setItem(K,JSON.stringify(s));const f=document.getElementById('sf');f.classList.add('on');clearTimeout(f._t);f._t=setTimeout(()=>f.classList.remove('on'),1800)}catch(e){}}
+function load(){try{const r=localStorage.getItem(K);if(!r)return;const s=JSON.parse(r);if(s.c)comp=new Set(s.c);comp.forEach(i=>{document.getElementById('n'+i).textContent='✓';document.querySelectorAll('.nav button')[i].classList.add('done')});if(typeof s.cur==='number')cur=s.cur;upd();go(cur);if(s.t){const d=new Date(s.t).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});document.getElementById('sbt').innerHTML='Willkommen zurück! Letzter Stand: <strong>'+d+'</strong> · Station '+(cur+1)+' von 5.'}}catch(e){}}
+function rst(){const m=document.getElementById('rst-modal');m.style.display='flex';}
+function rstConfirmed(){try{localStorage.removeItem(K)}catch(e){}location.reload();}
+function go(i){cur=i;document.querySelectorAll('.st').forEach((s,j)=>s.classList.toggle('vis',j===i));document.querySelectorAll('.nav button').forEach((b,j)=>b.classList.toggle('act',j===i));window.scrollTo({top:0,behavior:'smooth'});save()}
+function done(i){comp.add(i);document.getElementById('n'+i).textContent='✓';document.querySelectorAll('.nav button')[i].classList.add('done');upd();go(i+1)}
+function upd(){const p=(comp.size/5)*100;document.getElementById('pf').style.width=p+'%';document.getElementById('pt').textContent=comp.size+' / 5';updQuizLock();}
+
+// ── QUIZ-SPERRE & LEHRKRAFT-ZUGANG ────────────────────────────────────
+let lkMode=false;
+const LK_PW='LK2026';
+
+function updQuizLock(){
+  const unlocked=lkMode||(comp.size>=4);
+  const navBtn=document.getElementById('nav-quiz-btn');
+  const weitBtn=document.getElementById('quiz-weiter-btn');
+  if(navBtn){navBtn.disabled=!unlocked;navBtn.title=unlocked?'':'Schliesse zuerst alle 4 Stationen ab';}
+  if(weitBtn){weitBtn.disabled=!unlocked;weitBtn.title=unlocked?'':'Schliesse Station 4 zuerst ab';}
+  const lkBtn=document.getElementById('lk-btn');
+  if(lkBtn) lkBtn.textContent=lkMode?'🔓':'🔒';
+}
+
+function goQuiz(){
+  if(document.getElementById('quiz-weiter-btn').disabled)return;
+  go(4);
+}
+
+function lkLogin(){
+  if(lkMode){lkMode=false;updQuizLock();return;}
+  const modal=document.getElementById('lk-modal');
+  modal.style.display='flex';
+  document.getElementById('lk-pw-input').value='';
+  document.getElementById('lk-error').textContent='';
+  setTimeout(()=>document.getElementById('lk-pw-input').focus(),80);
+}
+function lkClose(){
+  document.getElementById('lk-modal').style.display='none';
+}
+function lkSubmit(){
+  const pw=document.getElementById('lk-pw-input').value;
+  if(pw===LK_PW){
+    lkMode=true;
+    updQuizLock();
+    document.getElementById('lk-modal').style.display='none';
+  } else {
+    document.getElementById('lk-error').textContent='Falsches Passwort - bitte erneut versuchen.';
+    document.getElementById('lk-pw-input').value='';
+    document.getElementById('lk-pw-input').focus();
+  }
+}
+// ── PFLICHTAUFGABEN-TRACKING ──────────────────────────────────────────
+// Pro Station: welche Aufgaben-IDs müssen beantwortet sein (mind. 1 Klick)?
+const required = {
+  0: ['q0m','q0agb1','q0agb2'],
+  1: ['q10','q1fall1','q1fall2'],
+  2: ['qs20','qs21','qs22'],
+  3: ['qca1','qca2','q30'],
+};
+const answered = new Set(); // IDs bereits beantworteter Aufgaben
+
+function markAnswered(qid) {
+  // Extrahiere Stations-Nummer aus der ersten Ziffer der ID
+  const stationMap = {
+    'q0': 0, 'drag-fb0': 0, 'sort-fb1c': 0,
+    'q10': 1, 'q11': 1, 'q12': 1, 'q1f': 1, 'drag-fb1': 1, 'fill-fb2d': 1,
+    'qs2': 2, 'q3p': 2, 'sort-fb-pw': 2, 'fill-fb3': 2,
+    'qca': 3, 'q30': 3, 'q31': 3, 'fb-a': 3,
+  };
+  answered.add(qid);
+  // Finde passende Station
+  for (let s = 0; s <= 3; s++) {
+    if (required[s] && required[s].includes(qid)) {
+      updateStationProgress(s);
+      break;
+    }
+  }
+}
+
+function updateStationProgress(s) {
+  const reqs = required[s];
+  const done_count = reqs.filter(id => answered.has(id)).length;
+  const total = reqs.length;
+  const pct = Math.round((done_count / total) * 100);
+  const fill = document.getElementById('sp'+s+'-fill');
+  const txt = document.getElementById('sp'+s+'-txt');
+  const btn = document.getElementById('done-btn-'+s);
+  if (fill) fill.style.width = pct + '%';
+  if (txt) txt.textContent = done_count + ' / ' + total + ' Pflichtaufgaben bearbeitet';
+  if (btn) {
+    if (done_count >= total) {
+      btn.disabled = false;
+      btn.title = '';
+      if (txt) { txt.textContent = '✓ Alle Pflichtaufgaben erledigt – du kannst die Station abschließen!'; txt.style.color = 'var(--green)'; }
+    } else {
+      btn.disabled = true;
+      btn.title = 'Noch ' + (total - done_count) + ' Pflichtaufgabe(n) offen';
+    }
+  }
+}
+
+// ── QUIZ ──────────────────────────────────────────────────────────────
+function ans(b,qid,r){const c=document.getElementById(qid),bs=c.querySelectorAll('.qo button');bs.forEach(x=>{x.disabled=true;x.style.opacity='.6'});b.style.opacity='1';const f=document.getElementById(qid+'-f');if(r==='ok'){b.classList.add('ok');f.className='qfb vis g';f.textContent='✅ Richtig!'}else{b.classList.add('no');f.className='qfb vis r';f.textContent='❌ Leider falsch.';bs.forEach(x=>{if(x.getAttribute('onclick')&&x.getAttribute('onclick').includes("'ok'"))x.classList.add('ok'),x.style.opacity='1'})}markAnswered(qid);}
+function chkM(cid,fid){const c=document.getElementById(cid),os=c.querySelectorAll('.mo');let ok=true,bad=false;os.forEach(o=>{const ch=o.querySelector('input').checked,cr=o.dataset.c==='1';if(ch&&!cr)bad=true;if(!ch&&cr)ok=false});const f=document.getElementById(fid);if(ok&&!bad){f.className='qfb vis g';f.textContent='✅ Perfekt! IP-Adresse, Standort, Kaufhistorie und Gesicht sind personenbezogene Daten.'}else{f.className='qfb vis r';f.textContent='❌ Nicht ganz. Richtig: IP-Adresse, Standort, Kaufhistorie, Gesicht. Temperatur und fiktiver Name sind keine.';os.forEach(o=>{if(o.dataset.c==='1')o.style.border='1px solid var(--green)',o.style.background='rgba(15,123,63,.06)'})}markAnswered('q0m');}
+function fq(b,i,r){if(fa[i])return;fa[i]=1;fc++;const c=document.getElementById('fq'+i),bs=c.querySelectorAll('.qo button');bs.forEach(x=>{x.disabled=true;x.style.opacity='.6'});b.style.opacity='1';const f=document.getElementById('fq'+i+'-f');if(r==='ok'){b.classList.add('ok');f.className='qfb vis g';f.textContent='✅ Richtig! +1';fs++}else{b.classList.add('no');f.className='qfb vis r';f.textContent='❌ Falsch.';bs.forEach(x=>{if(x.getAttribute('onclick')&&x.getAttribute('onclick').includes("'ok'"))x.classList.add('ok'),x.style.opacity='1'})}if(fc===10)document.getElementById('fbtn').style.display='inline-flex';save()}
+function showRes(){document.getElementById('fres').style.display='block';document.getElementById('fbw').style.display='none';document.getElementById('fp').textContent=fs;const m=[[0,4,'Schau dir die Stationen nochmal an!','Noch Luft nach oben'],[5,7,'Solide! Wiederhole die unsicheren Punkte.','Gut gemacht!'],[8,9,'Fast perfekt!','Klasse! 🎉'],[10,10,'Volle Punktzahl!','Perfekt! 🏆']];let t='',mg='';m.forEach(([a,b,g,h])=>{if(fs>=a&&fs<=b){mg=g;t=h}});document.getElementById('ft').textContent=t;document.getElementById('fm').textContent=mg;comp.add(4);document.getElementById('n4').textContent='✓';document.querySelectorAll('.nav button')[4].classList.add('done');upd();save();document.getElementById('fres').scrollIntoView({behavior:'smooth'})}
+function redo(){fs=0;fa=Array(10).fill(0);fc=0;document.getElementById('fres').style.display='none';document.getElementById('fbw').style.display='flex';document.getElementById('fbtn').style.display='none';for(let i=0;i<10;i++){const c=document.getElementById('fq'+i);c.querySelectorAll('.qo button').forEach(b=>{b.disabled=false;b.style.opacity='1';b.classList.remove('ok','no')});document.getElementById('fq'+i+'-f').className='qfb'}save();go(4)}
+
+function chkSort(listId,fbId,correctOrder){
+  const items=document.getElementById(listId).querySelectorAll('.sort-item');
+  const current=[...items].map(i=>i.textContent.replace('⠿','').trim());
+  const fb=document.getElementById(fbId);
+  // Flexible check: allow some tolerance – check at least correct rank order for top/bottom
+  const correct=correctOrder.map(s=>s.trim());
+  let score=0;
+  current.forEach((v,i)=>{if(correct[i]&&v.startsWith(correct[i].substring(0,15)))score++});
+  if(score===correct.length){
+    fb.className='qfb vis g';fb.textContent='✅ Perfekt! Die Reihenfolge stimmt.';
+  } else {
+    fb.className='qfb vis r';fb.textContent='❌ Noch nicht ganz. Tipp: Denke daran, welche Daten im schlimmsten Fall missbraucht werden könnten.';
+  }
+}
+
+
+
+function chkM3(cid,fid){
+  const c=document.getElementById(cid),os=c.querySelectorAll('.mo');
+  let ok=true,bad=false;
+  os.forEach(o=>{const ch=o.querySelector('input').checked,cr=o.dataset.c==='1';if(ch&&!cr)bad=true;if(!ch&&cr)ok=false});
+  const f=document.getElementById(fid);
+  if(ok&&!bad){f.className='qfb vis g';f.textContent='✅ Richtig! Verdächtige Domain, .ru-Link, Abfrage von PIN/TAN und künstliche Dringlichkeit sind klare Warnsignale.'}
+  else{f.className='qfb vis r';f.textContent='❌ Nicht ganz. Richtig: verdächtige Domain, .ru-Link, PIN/TAN-Abfrage und künstliche Dringlichkeit.';os.forEach(o=>{if(o.dataset.c==='1')o.style.border='1px solid var(--green)',o.style.background='rgba(15,123,63,.06)'})}
+}
+
+// ── DRAG & SORT ────────────────────────────────────────────────────────
+(function(){
+  let dragSrc=null;
+  document.addEventListener('dragstart',e=>{
+    const si=e.target.closest('.sort-item');
+    if(si){dragSrc=si;si.classList.add('dragging')}
+  });
+  document.addEventListener('dragend',e=>{
+    const si=e.target.closest('.sort-item');
+    if(si)si.classList.remove('dragging');
+  });
+  document.addEventListener('dragover',e=>{
+    const si=e.target.closest('.sort-item');
+    if(si&&dragSrc&&si!==dragSrc){
+      e.preventDefault();
+      const list=si.parentNode;
+      const items=[...list.querySelectorAll('.sort-item')];
+      const srcIdx=items.indexOf(dragSrc);
+      const tgtIdx=items.indexOf(si);
+      if(srcIdx<tgtIdx)si.after(dragSrc);else si.before(dragSrc);
+    }
+  });
+})();
+
+
+let dragEl=null;
+document.addEventListener('dragstart',e=>{if(e.target.classList.contains('drag-item')){dragEl=e.target;e.target.classList.add('dragging')}});
+document.addEventListener('dragend',e=>{if(e.target.classList.contains('drag-item'))e.target.classList.remove('dragging')});
+document.addEventListener('dragover',e=>{const z=e.target.closest('.drag-area');if(z){e.preventDefault();z.classList.add('over')}});
+document.addEventListener('dragleave',e=>{const z=e.target.closest('.drag-area');if(z)z.classList.remove('over')});
+document.addEventListener('drop',e=>{const z=e.target.closest('.drag-area');if(z&&dragEl){e.preventDefault();z.classList.remove('over');z.appendChild(dragEl);dragEl=null}});
+
+function chkDrag(z1id,z2id,fbid){
+  const z1=document.getElementById(z1id),z2=document.getElementById(z2id);
+  const exp1=z1.dataset.expect,exp2=z2.dataset.expect;
+  let ok=true;
+  z1.querySelectorAll('.drag-item').forEach(it=>{if(it.dataset.val!==exp1)ok=false});
+  z2.querySelectorAll('.drag-item').forEach(it=>{if(it.dataset.val!==exp2)ok=false});
+  // check none missing
+  const total=[...z1.querySelectorAll('.drag-item'),...z2.querySelectorAll('.drag-item')];
+  if(total.length<6)ok=false;
+  const fb=document.getElementById(fbid);
+  if(ok){fb.className='qfb vis g';fb.textContent='✅ Perfekt! Alle Angaben richtig zugeordnet.';z1.classList.add('correct-zone');z2.classList.add('correct-zone')}
+  else{fb.className='qfb vis r';fb.textContent='❌ Noch nicht ganz. Personenbezogen: Name, Handynummer, Kfz-Kennzeichen, E-Mail. Nicht personenbezogen: Einwohnerzahl, heutiges Datum.'}
+}
+
+function chkDrag2(z1id,z2id,bankId,fbid,expectedPerZone){
+  const z1=document.getElementById(z1id),z2=document.getElementById(z2id);
+  const items1=z1.querySelectorAll('.drag-item'),items2=z2.querySelectorAll('.drag-item');
+  if(items1.length+items2.length<expectedPerZone*2){
+    const fb=document.getElementById(fbid);fb.className='qfb vis r';fb.textContent='❌ Bitte alle Argumente zuordnen – es fehlen noch welche.';return;
+  }
+  let ok=true;
+  items1.forEach(it=>{if(it.dataset.val!==z1.dataset.expect)ok=false});
+  items2.forEach(it=>{if(it.dataset.val!==z2.dataset.expect)ok=false});
+  const fb=document.getElementById(fbid);
+  if(ok){
+    fb.className='qfb vis g';fb.textContent='✅ Perfekt! Alle Argumente richtig zugeordnet.';
+    z1.classList.add('correct-zone');z2.classList.add('correct-zone');
+  } else {
+    fb.className='qfb vis r';fb.textContent='❌ Nicht ganz richtig. Schau nochmal genau hin!';
+    z1.classList.add('wrong-zone');z2.classList.add('wrong-zone');
+    setTimeout(()=>{z1.classList.remove('wrong-zone');z2.classList.remove('wrong-zone')},1200);
+  }
+}
+function chkDragMulti(zoneIds,fbid){
+  let ok=true,filled=true;
+  zoneIds.forEach(zid=>{
+    const z=document.getElementById(zid);
+    const items=z.querySelectorAll('.drag-item');
+    if(items.length===0){filled=false;return}
+    items.forEach(it=>{if(it.dataset.val!==z.dataset.expect)ok=false});
+  });
+  const fb=document.getElementById(fbid);
+  if(!filled){fb.className='qfb vis r';fb.textContent='❌ Bitte alle Beschreibungen zuordnen.';return}
+  if(ok){fb.className='qfb vis g';fb.textContent='✅ Super! Alle Rechte korrekt zugeordnet.';zoneIds.forEach(zid=>document.getElementById(zid).classList.add('correct-zone'))}
+  else{fb.className='qfb vis r';fb.textContent='❌ Leider nicht ganz richtig. Tipp: Lies die Beschreibungen nochmal genau.'}
+}
+
+// ── LÜCKENTEXT ────────────────────────────────────────────────────────
+let selChip=null;
+function selectChip(el){
+  if(el.classList.contains('used'))return;
+  document.querySelectorAll('.fill-chip').forEach(c=>c.style.outline='none');
+  selChip=el;
+  el.style.outline='2px solid var(--primary)';
+}
+function placeChip(blank){
+  if(!selChip)return;
+  // put back old chip if blank was filled
+  const old=blank.dataset.placed;
+  if(old){
+    document.querySelectorAll('.fill-chip').forEach(c=>{if(c.textContent===old){c.classList.remove('used')}});
+  }
+  blank.textContent=selChip.textContent;
+  blank.dataset.placed=selChip.textContent;
+  blank.classList.remove('ok','no');
+  selChip.classList.add('used');
+  selChip.style.outline='none';
+  selChip=null;
+}
+function chkFill(fbid){
+  const fb=document.getElementById(fbid);
+  const container=fb.closest('.c');
+  const blanks=container.querySelectorAll('.fill-blank');
+  const chips=container.querySelectorAll('.fill-chip');
+  let ok=true;
+  blanks.forEach(b=>{
+    if(b.dataset.placed===b.dataset.ans){
+      b.classList.add('ok');b.classList.remove('no');
+    }else{
+      ok=false;
+      const placed=b.dataset.placed;
+      if(placed){chips.forEach(c=>{if(c.textContent===placed){c.classList.remove('used');c.style.outline='none'}})}
+      b.classList.remove('ok','no');
+      b.textContent='___________';
+      delete b.dataset.placed;
+      // kurz rot aufblitzen dann neutral
+      b.classList.add('no');
+      setTimeout(()=>b.classList.remove('no'),800);
+    }
+  });
+  if(ok){fb.className='qfb vis g';fb.textContent='✅ Alle Begriffe richtig eingesetzt!'}
+  else{fb.className='qfb vis r';fb.textContent='❌ Falsche Lücken wurden zurückgesetzt – wähle die richtigen Begriffe und versuche es nochmal.'}
+}
+function chkFill2(chipContainerId,fbId){chkFill(fbId)}
+
+// ── MEMORY ────────────────────────────────────────────────────────────
+(function(){
+  const pairs=[
+    {term:'Data-Mining',def:'Automatisierte Analyse großer Datenmengen zur Mustererkennung'},
+    {term:'Phishing',def:'Erschleichen von Passwörtern durch gefälschte Websites/Mails'},
+    {term:'Re-Identifikation',def:'Rückschluss auf Personen aus angeblich anonymen Daten'},
+    {term:'Predictive Policing',def:'Algorithmen sagen vorher, wo Straftaten wahrscheinlich entstehen'},
+    {term:'Cambridge Analytica',def:'Nutzte FB-Daten für gezielte politische Wahlwerbung'},
+  ];
+  let cards=[],flipped=[],matched=0,tries=0,lock=false;
+  function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  function initMem(){
+    const grid=document.getElementById('mem-grid');
+    if(!grid)return;
+    const all=[];
+    pairs.forEach((p,i)=>{all.push({id:i,type:'term',text:p.term});all.push({id:i,type:'def',text:p.def})});
+    shuffle(all);
+    grid.innerHTML='';
+    cards=[];flipped=[];matched=0;tries=0;lock=false;
+    all.forEach((item,idx)=>{
+      const el=document.createElement('div');
+      el.className='mem-card';
+      el.innerHTML='<div class="mem-back">❓</div><div class="mem-front">'+item.text+'</div>';
+      el.dataset.id=item.id;
+      el.addEventListener('click',()=>flipCard(el,item));
+      grid.appendChild(el);
+      cards.push(el);
+    });
+    updMemStat();
+  }
+  function flipCard(el,item){
+    if(lock||el.classList.contains('matched')||flipped.includes(el))return;
+    el.classList.add('flipped');
+    flipped.push(el);
+    if(flipped.length===2){
+      tries++;lock=true;
+      const [a,b]=flipped;
+      if(a.dataset.id===b.dataset.id&&a!==b){
+        setTimeout(()=>{a.classList.add('matched');b.classList.add('matched');matched++;flipped=[];lock=false;updMemStat();if(matched===pairs.length)document.getElementById('mem-win').style.display='block'},400);
+      }else{
+        setTimeout(()=>{a.classList.remove('flipped');b.classList.remove('flipped');flipped=[];lock=false;updMemStat()},2500);
+          }
+    }
+  }
+  function updMemStat(){document.getElementById('mem-stat').textContent='Paare gefunden: '+matched+' / '+pairs.length+' · Versuche: '+tries}
+  window.addEventListener('DOMContentLoaded',initMem);
+})();
+
+load();
+updQuizLock();
+</script>
+</body>
+</html>
